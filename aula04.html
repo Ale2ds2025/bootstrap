@@ -62,7 +62,7 @@
                 <!-- Tipos de Inputs -->
                 <div class="form-section">
                   <h4><i class="fas fa-keyboard"></i>Tipos de inputs</h4>
-
+                  
                   <div class="form-group">
                     <label for="">Email</label>
                     <input type="email" class="form-control" id="inputEmail" placeholder="seu@email">
@@ -75,7 +75,7 @@
 
                   <div class="form-group">
                     <label for="">Número</label>
-                    <input type="number" class="form-control" id="inputNumero" placeholder="123:">
+                    <input type="number" class="form-control" id="inputNumero" placeholder="123">
                   </div>
 
                   <div class="form-group">
@@ -89,56 +89,82 @@
                   </div>
                 </div>
 
-                <!--select e select-personalizado-->
-                <div class="form-group">
+                <!-- select e select-personalizado -->
+                 <div class="form-group">
                   <label for="selectCustom">Selecione uma opção</label>
                   <select id="selectCustom" class="form-control">
-                    <option valume="">1</option>
-                    <option valume="">2</option>
-                    <option valume="">3</option>
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
                   </select>
-                </div>
-                <div class="form-group">
-                  <label for="selectCustom">Selecione uma opção(customizado)</label>
+                 </div>
+
+                 <div class="form-group">
+                  <label for="selectCustom">Selecione uma opção (customizado)</label>
                   <select id="selectCustom" class="custom-select">
-                    <option valume="1">Opção1</option>
-                    <option valume="2">Opção2</option>
-                    <option valume="3">Opção3</option>
+                    <option value="1">Opção 1</option>
+                    <option value="2">Opção 2</option>
+                    <option value="3">Opção 3</option>
                   </select>
-                </div>
+                 </div>
 
-              <!--Textarea-->
-              <div class="for-section">
-                <h4><i class="fas fa-align-left"></i> Checkboxes e radios</h4>
-                <div class="form-section">
-                  <textarea name="" id="" class="form-control" placeholder="Digite a sua mensagem" rows="3"></textarea>
-                </div>
-              </div>
-  
-              <!--Checkboxes e radios-->
-              <div class="for-section">
-               <h4><i class="fas fa check-square"></i> Checkboxes e radios</h4>
-              </div class="for-group">
-              <label for=""Checkboxes></label>
-              <div class="for-check for-check-inline">
-                <input type="checkbox" class="form-check-input" value="option1">
-                <label for="" class="for-check-label">Opção1</label>
-                </div>
-              <div class="for-check for-check-inline">
-                <input type="checkbox" class="form-check-input" value="option1">
-                <label for="" class="for-check-label">Opção2</label>
-                </div>
-              <div class="for-check for-check-inline">
-                <input type="checkbox" class="form-check-input" value="option1">
-                <label for="" class="for-check-label">Opção3</label>
-                
-                </div>
-              </div>
+                 <!-- Textarea -->
+                 <div class="form-section">
+                  <h4> <i class="fas fa-align-left"></i> Textarea</h4>
+                  <div class="form-section">
+                    <textarea name="" id="" class="form-control" placeholder="Digite sua mensagem" rows="3"></textarea>
+                  </div>
+                 </div>
+
+                 <!-- Checkboxes e radios-->
+                 <div class="form-section">
+                  <h4> <i class="fas fa-check-square"></i> Checkboxes e radios</h4>
+                  <div class="form-group">
+                    <label for="">Checkboxes</label><br>
+                    <div class="form-check form-check-inline">
+                      <input type="checkbox" class="form-check-input" value="option1">
+                      <label for="" class="form-check-label">Opção1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input type="checkbox" class="form-check-input" value="option2">
+                      <label for="" class="form-check-label">Opção2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input type="checkbox" class="form-check-input" value="option3">
+                      <label for="" class="form-check-label">Opção3</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Botões de radio</label><br>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" name="exemploRadio" id="radio1" value="opção1">
+                      <label for="radio1" class="form-check-label">opção 1</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" name="exemploRadio" id="radio2" value="opção2">
+                      <label for="radio1" class="form-check-label">opção 2</label>
+                    </div>
+                    <div class="form-check">
+                      <input type="radio" class="form-check-input" name="exemploRadio" id="radio3" value="opção3">
+                      <label for="radio1" class="form-check-label">opção 3</label>
+                    </div>
+                  </div>
+                 </div>
+                 <!--SWITCH TOOGLE-->
+                 <div class="form-section">
+                  <h4><i class="fas fa-toggle-on"></i></h4>
+                  <div class="form-group">
+                    <div class="form-check form-switch">
+                    <input type="checkbox" class="form-check-input" id="flexSwitchCheckDefault">
+                    <label for="" class="form-check-label">Ativar Notificações</label>
+                  </div>
+                  </div>
+                 </div>
             </div>
-
-
         </form>
     </div>
+
 
 
     <div class="mb-5">
@@ -149,3 +175,8 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
