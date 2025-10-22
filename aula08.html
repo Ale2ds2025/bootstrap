@@ -4,17 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sistema de Gerenciamento</title>
-  <!-- Bootstrap 4.1 CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     body {
       padding-top: 56px;
       background-color: #f8f9fa;
     }
 
-    /* Sidebar */
     #sidebar {
       min-width: 250px;
       max-width: 250px;
@@ -41,7 +40,7 @@
       padding: 12px 20px;
       font-size: 1.1em;
       display: block;
-      color: #42e8e8;
+      color: #c9f5ff;
       text-decoration: none;
       transition: background 0.3s;
     }
@@ -56,26 +55,20 @@
       color: #fff;
     }
 
-    /* Conteúdo principal */
     #content {
       margin-left: 250px;
       padding: 20px;
       transition: margin-left 0.3s;
     }
 
-    /* Navbar */
-    .navbar-brand span {
-      font-weight: bold;
+    .content-section {
+      display: none;
     }
 
-    /* Toggle button (mobile) */
-    #sidebarCollapse {
-      background: none;
-      border: none;
-      color: #fff;
+    .content-section.active {
+      display: block;
     }
 
-    /* Responsivo */
     @media (max-width: 768px) {
       #sidebar {
         margin-left: -250px;
@@ -97,10 +90,10 @@
   <!-- Navbar Superior -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container-fluid">
-      <button type="button" id="sidebarCollapse" class="btn">
+      <button type="button" id="sidebarCollapse" class="btn text-white">
         <i class="fas fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#"><span>Sistema Admin</span></a>
+      <a class="navbar-brand ml-2" href="#"><span>Sistema Admin</span></a>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
@@ -121,20 +114,20 @@
     <div class="sidebar-header">
       <h4>Menu Principal</h4>
     </div>
-    <ul class="list-unstyled components">
-      <li class="active">
+    <ul class="list-unstyled components" id="menu-items">
+      <li class="active" data-target="dashboard">
         <a href="#"><i class="fas fa-home mr-2"></i> Dashboard</a>
       </li>
-      <li>
+      <li data-target="clientes">
         <a href="#"><i class="fas fa-users mr-2"></i> Clientes</a>
       </li>
-      <li>
+      <li data-target="produtos">
         <a href="#"><i class="fas fa-box mr-2"></i> Produtos</a>
       </li>
-      <li>
+      <li data-target="relatorios">
         <a href="#"><i class="fas fa-chart-line mr-2"></i> Relatórios</a>
       </li>
-      <li>
+      <li data-target="configuracoes">
         <a href="#"><i class="fas fa-cog mr-2"></i> Configurações</a>
       </li>
     </ul>
@@ -142,48 +135,285 @@
 
   <!-- Conteúdo Principal -->
   <div id="content">
-    <div class="container-fluid">
-      <h2>Dashboard</h2>
-      <p class="lead">Bem-vindo ao sistema de gerenciamento. Use o menu lateral para navegar.</p>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card text-white bg-primary mb-3">
-            <div class="card-body">
-              <h5 class="card-title">Clientes Ativos</h5>
-              <p class="card-text display-4">200</p>
+    
+    <!-- Dashboard -->
+    <div id="dashboard" class="content-section active">
+      <div class="container-fluid">
+        <h2>Relatório de Desempenho</h2>
+        <p class="lead">Visualize o desempenho de vendas e produtos em tempo real.</p>
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+              <div class="card-body text-center">
+                <i class="fas fa-shopping-cart mb-2"></i>
+                <h5 class="card-title">Vendas do Mês</h5>
+                <p class="card-text display-4">R$ 25.400</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+              <div class="card-body text-center">
+                <i class="fas fa-user-plus mb-2"></i>
+                <h5 class="card-title">Novos Clientes</h5>
+                <p class="card-text display-4">120</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+              <div class="card-body text-center">
+                <i class="fas fa-box-open mb-2"></i>
+                <h5 class="card-title">Produtos Vendidos</h5>
+                <p class="card-text display-4">860</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card text-white bg-danger mb-3">
+              <div class="card-body text-center">
+                <i class="fas fa-chart-pie mb-2"></i>
+                <h5 class="card-title">Meta Atingida</h5>
+                <p class="card-text display-4">92%</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card text-white bg-success mb-3">
-            <div class="card-body">
-              <h5 class="card-title">Vendas Hoje</h5>
-              <p class="card-text display-4">R$ 5.540</p>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card mb-4">
+              <div class="card-header bg-primary text-white">Vendas Mensais</div>
+              <div class="card-body">
+                <canvas id="vendasChart"></canvas>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card text-white bg-warning mb-3">
-            <div class="card-body">
-              <h5 class="card-title">Pedidos Pendentes</h5>
-              <p class="card-text display-4">20</p>
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div class="card-header bg-success text-white">Distribuição de Produtos</div>
+              <div class="card-body">
+                <canvas id="produtosChart"></canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Clientes -->
+    <div id="clientes" class="content-section">
+      <div class="container-fluid">
+        <h2>Gerenciar Clientes</h2>
+        <p class="lead">Lista de clientes cadastrados no sistema.</p>
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Telefone</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>João Silva</td>
+                  <td>joao@email.com</td>
+                  <td>(11) 99999-0000</td>
+                  <td>
+                    <button class="btn btn-sm btn-warning">Editar</button>
+                    <button class="btn btn-sm btn-danger">Excluir</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Maria Souza</td>
+                  <td>maria@email.com</td>
+                  <td>(21) 88888-1111</td>
+                  <td>
+                    <button class="btn btn-sm btn-warning">Editar</button>
+                    <button class="btn btn-sm btn-danger">Excluir</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-primary">Adicionar Cliente</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produtos -->
+    <div id="produtos" class="content-section">
+      <div class="container-fluid">
+        <h2>Gerenciar Produtos</h2>
+        <p class="lead">Catálogo de produtos disponíveis.</p>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <img src="https://via.placeholder.com/150" class="card-img-top" alt="Produto">
+                  <div class="card-body">
+                    <h5 class="card-title">Ração Premium</h5>
+                    <p class="text-muted">R$ 89,90</p>
+                    <button class="btn btn-warning btn-sm">Editar</button>
+                    <button class="btn btn-danger btn-sm">Excluir</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <img src="https://via.placeholder.com/150" class="card-img-top" alt="Produto">
+                  <div class="card-body">
+                    <h5 class="card-title">Brinquedo para Cães</h5>
+                    <p class="text-muted">R$ 35,00</p>
+                    <button class="btn btn-warning btn-sm">Editar</button>
+                    <button class="btn btn-danger btn-sm">Excluir</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary">Adicionar Produto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Relatórios -->
+    <div id="relatorios" class="content-section">
+      <div class="container-fluid">
+        <h2>Relatórios Avançados</h2>
+        <p class="lead">Exporte ou visualize relatórios detalhados.</p>
+        <div class="card">
+          <div class="card-body">
+            <div class="form-group">
+              <label>Data Inicial</label>
+              <input type="date" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Data Final</label>
+              <input type="date" class="form-control">
+            </div>
+            <button class="btn btn-success">Gerar Relatório</button>
+            <button class="btn btn-outline-secondary ml-2">Exportar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configurações -->
+    <div id="configuracoes" class="content-section">
+      <div class="container-fluid">
+        <h2>Configurações do Sistema</h2>
+        <p class="lead">Ajuste preferências e parâmetros do sistema.</p>
+        <div class="card">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label>Nome da Empresa</label>
+                <input type="text" class="form-control" value="PetShop Admin">
+              </div>
+              <div class="form-group">
+                <label>E-mail de Contato</label>
+                <input type="email" class="form-control" value="contato@petshop.com">
+              </div>
+              <div class="form-group">
+                <label>Moeda</label>
+                <select class="form-control">
+                  <option>BRL - Real (R$)</option>
+                  <option>USD - Dólar (US$)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
   <script>
     $(document).ready(function () {
+      // Toggle Sidebar
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $('#content').toggleClass('active');
       });
+
+      // Navegação entre páginas
+      $('#menu-items li').on('click', function () {
+        const target = $(this).data('target');
+
+        // Atualiza menu ativo
+        $('#menu-items li').removeClass('active');
+        $(this).addClass('active');
+
+        // Mostra conteúdo correspondente
+        $('.content-section').removeClass('active');
+        $('#' + target).addClass('active');
+
+        // Fecha sidebar em mobile
+        if ($(window).width() <= 768) {
+          $('#sidebar').removeClass('active');
+          $('#content').removeClass('active');
+        }
+      });
+
+      // Inicializa gráficos (só no dashboard)
+      if ($('#dashboard').hasClass('active')) {
+        initCharts();
+      }
+
+      function initCharts() {
+        const ctxVendas = document.getElementById('vendasChart').getContext('2d');
+        new Chart(ctxVendas, {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'],
+            datasets: [{
+              label: 'Vendas (R$)',
+              data: [8000, 12000, 9500, 15000, 18000, 20000, 23000, 25000, 24000, 25400],
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.3
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: { beginAtZero: true }
+            }
+          }
+        });
+
+        const ctxProdutos = document.getElementById('produtosChart').getContext('2d');
+        new Chart(ctxProdutos, {
+          type: 'pie',
+          data: {
+            labels: ['Rações', 'Brinquedos', 'Acessórios', 'Higiene'],
+            datasets: [{
+              data: [45, 25, 15, 15],
+              backgroundColor: [
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 99, 132, 0.7)'
+              ]
+            }]
+          }
+        });
+      }
     });
   </script>
 </body>
